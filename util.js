@@ -57,9 +57,33 @@ const requireAdmin = (req, res, next) => {
   next();
 };
 
+const checkAuth = event => {
+  return new Promise((resolve, reject) => {
+    try {
+      const { authorization } = event.headers;
+      if (!authorization) {
+        reject('Not authorized!');
+      }
+      const token = authorization.slice(7);
+      if (!token) {
+        reject('Not authorized!');
+      }
+      
+      const decoded = jwt.verify(
+        token,
+        process.env.JWT_SECRET
+      );
+      resolve(decoded);
+    } catch (err) {
+      reject(err);
+    }
+  })
+}
+
 module.exports = {
   createToken,
   hashPassword,
   verifyPassword,
-  requireAdmin
+  requireAdmin,
+  checkAuth
 };
