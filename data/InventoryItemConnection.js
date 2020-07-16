@@ -30,8 +30,9 @@ const createConnection = async () => {
 				}
 			);
 		}
-		
+
 		await connection;
+		console.log(connection)
 		connection.model(
 			'inventory-item',
 			inventoryItemModel

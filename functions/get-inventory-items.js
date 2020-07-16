@@ -9,7 +9,7 @@ exports.handler = async function(event, context, callback) {
 		const items = await InventoryItem.find({
 			user: user.sub
 		});
-		
+
 		return callback(null, {
 			statusCode: 200,
 			body: JSON.stringify(items)
