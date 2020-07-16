@@ -1,11 +1,11 @@
-const InventoryItemConnection = require('../data/InventoryItemConnection');
+const { createConnection } = require('../data/InventoryItemConnection');
 const { checkAuth } = require('../util');
 
 exports.handler = async function(event, context, callback) {
 	context.callbackWaitsForEmptyEventLoop = false;
 	try {
 		const user = await checkAuth(event);
-		const InventoryItem = await InventoryItemConnection.createConnection();
+		const InventoryItem = await createConnection();
 		const items = await InventoryItem.find({
 			user: user.sub
 		});
