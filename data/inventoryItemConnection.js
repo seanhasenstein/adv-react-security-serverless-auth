@@ -17,7 +17,6 @@ const inventoryItemModel = new Schema({
 let connection = null;
 
 const createConnection = async () => {
-	console.log('HELLO from createConnection function')
 	try {
 		if (!connection) {
 			connection = mongoose.createConnection(

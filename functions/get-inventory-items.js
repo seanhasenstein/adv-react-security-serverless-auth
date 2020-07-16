@@ -4,9 +4,10 @@ const { checkAuth } = require('../util');
 exports.handler = async function(event, context, callback) {
 	context.callbackWaitsForEmptyEventLoop = false;
 	try {
-		console.log(event.headers.authorization)
 		const user = await checkAuth(event);
+		console.log('user', user);
 		const InventoryItem = await InventoryItemConnection.createConnection();
+		console.log('InventoryItem', InventoryItem);
 		const items = await InventoryItem.find({
 			user: user.sub
 		});
