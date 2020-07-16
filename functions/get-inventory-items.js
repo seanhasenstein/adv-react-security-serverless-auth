@@ -15,6 +15,7 @@ exports.handler = async function(event, context, callback) {
 			body: JSON.stringify(items)
 		});
 	} catch (err) {
+		console.log(err)
 		return callback(null, {
 			statusCode: 400,
 			body: JSON.stringify({
