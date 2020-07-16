@@ -17,6 +17,7 @@ const inventoryItemModel = new Schema({
 let connection = null;
 
 const createConnection = async () => {
+	console.log(process.env.ATLAS_URL)
 	try {
 		if (!connection) {
 			connection = mongoose.createConnection(
