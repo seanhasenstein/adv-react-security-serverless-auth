@@ -80,10 +80,27 @@ const checkAuth = event => {
   })
 }
 
+const checkRole = (user, requiredRole) => {
+  return new Promise((resolve, reject) => {
+    try {
+      if (!user.role) {
+        reject('Role not specified');
+      }
+      if (user.role !== requiredRole) {
+        reject('Insufficient role');
+      }
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  })
+}
+
 module.exports = {
   createToken,
   hashPassword,
   verifyPassword,
   requireAdmin,
-  checkAuth
+  checkAuth,
+  checkRole
 };
